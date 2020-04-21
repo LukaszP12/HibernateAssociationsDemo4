@@ -17,7 +17,7 @@ public class Training {
     private String name;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinTable(name = "employee_training",joinColumns = @JoinColumn(name = "id_training"), inverseJoinColumns = @JoinColumn(name = "id_employee"))
+    @JoinTable(joinColumns = @JoinColumn(name = "id_training"),inverseJoinColumns = @JoinColumn(name = "emp_id"))
     private List<Employee> employees;
 
     public List<Employee> getEmployees() {

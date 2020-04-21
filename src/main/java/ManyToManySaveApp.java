@@ -26,16 +26,17 @@ public class ManyToManySaveApp {
 
         Training training = new Training("sales training");
 
-        Employee employee = new Employee("Johny","Deep",16000);
-        Employee employee1 = new Employee("Miley","Cyrus",16000);
+        Employee employee = new Employee("Johnny","Depp",16000);
+        Employee employee1 = new Employee("Miley","Cirus",16000);
 
         training.addEmployee(employee);
         training.addEmployee(employee1);
 
-        session.persist(training); //operacja zapisu jest kaskadowana
+        session.persist(training);
 
         session.getTransaction().commit();
 
         factory.close();
+
     }
 }

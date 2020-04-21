@@ -3,12 +3,12 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="employee")
+@Table(name="employee1")
 public class Employee {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id_employee")
+    @Column(name="emp_id")
     private Integer idEmployee;
 
     @Column(name="first_name")
@@ -23,6 +23,12 @@ public class Employee {
     public Employee() {
     }
 
+    public Employee(String firstName, String lastName, Integer salary) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.salary = salary;
+    }
+
     public Employee(String firstName, String lastName, int salary) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -30,7 +36,7 @@ public class Employee {
     }
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinTable(name = "employee_training",joinColumns = @JoinColumn(name = "id_employee"), inverseJoinColumns = @JoinColumn(name = "id_training"))
+    @JoinTable(name = "employee_training",joinColumns = @JoinColumn(name = "emp_id"),inverseJoinColumns = @JoinColumn(name = "id_training"))
     private List<Training> trainings;
 
     public Integer getIdEmployee() {
