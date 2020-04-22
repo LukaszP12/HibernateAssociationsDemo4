@@ -25,39 +25,45 @@ public class ManyToManyGetApp {
         Session session = factory.getCurrentSession();
 
 
-        int id =2;
+        int id = 2;
 
         session.beginTransaction();
 
-        String getTraining = "from Training";
+        String training = "from Training";
 
-        Query query = session.createQuery(getTraining);
-
+        Query query = session.createQuery(training);
         List<Training> resultList = query.getResultList();
 
-        for (Training training : resultList){
-            System.out.println("\n" + training);
+        for (Training trainingObject : resultList){
+            System.out.println(trainingObject.getName() + "has employeeId: " + trainingObject.getIdTraining() + "is done by employees: " + trainingObject.getEmployees());
         }
 
-  /*    Training training = new Training("java training");
+        Training training2 = new Training("java training");
 
-        Employee employee = session.get(Employee.class, 120);
-        Employee employee1 = session.get(Employee.class, 121);
+        Employee employee = session.get(Employee.class, 127);
+        Employee employee1 = session.get(Employee.class, 104);
 
-        training.addEmployee(employee);
-        training.addEmployee(employee1);
+        training2.addEmployee(employee);
+        training2.addEmployee(employee1);
 
-        session.persist(training); */
+        session.persist(training2);
 
+        int id_training = 10;
 
-
- /*       Training training = session.get(Training.class, id);
+        Training trainingId10 = session.get(Training.class, id_training);
 
         System.out.println(training);
-        for (Employee employee : training.getEmployees()){
-            System.out.println("- " + employee);
-        } */
+        for (Employee employeeId10 : trainingId10.getEmployees()){
+            System.out.println("- " + employeeId10);
+        }
 
+        String trainingQuery = "from Training";
+        Query query1 = session.createQuery(trainingQuery);
+        List<Training> resultList1 = query1.getResultList();
+
+        for (Training training1 : resultList1){
+            System.out.println(training1.getName() + " is done by employees: " + training1.getEmployees());
+        }
 
         session.getTransaction().commit();
 
